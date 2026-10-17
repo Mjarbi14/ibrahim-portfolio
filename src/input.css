@@ -1,0 +1,561 @@
+@import "tailwindcss";
+
+@layer base {
+  /* Two faces, both chosen after reading the linters' own rule lists. All
+     three previous faces were named as generic by one or both tools, and the
+     third of them was a fixed-width face, which is banned outright. The first
+     replacement picked for the display role turned out to be on the banned
+     list too, which is why the list is read rather than guessed at. */
+  :root {
+    --face-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --face-text: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+    /* Few sizes, far apart. Nothing sits between lead and head, so the page
+       cannot drift into the nine-near-identical-sizes mush.
+
+       --step-display is not a taste choice, it is solved. The rule is two
+       rendered lines at every width, and the arithmetic behind it is
+       characters per line = line width / (font size * k), with k = 0.5 for a
+       serif at display size. The longest authored line here is "before I make
+       it.", 17 characters, so the ceiling is width / 8.5. Using k = 0.55 for
+       margin gives width / 9.35: 37px at a 350px phone measure, 75px at 704px,
+       123px at the 1152px container. This clamp stays under that line
+       everywhere (33px, 62px, 120px), and 120px at 1440 is 8.3vw, which is
+       where the strongest sites in the study sit. The first attempt was set to
+       128px inside a 574px column, needed 67px, and broke into four lines. */
+    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+    --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+    --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+    --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+    --step-display: clamp(2rem, 0.25rem + 7.5vw, 7.5rem);
+
+    /* Dark is the default. No line token and no border token exist on purpose:
+       surfaces are told apart by a measured tone step of 4.7 lightness points,
+       inside the 2 to 6 the rule allows, and that step is what replaced
+       thirteen 1px borders. */
+    --c-bg: #0b0d10;
+    --c-surface: #14181f;
+    --c-ink: #f3f4f6;
+    --c-muted: #9ca3af;
+    --c-accent: #f5a524;
+    --c-accent-ink: #0b0d10;
+    /* The accent under the pointer. Brighter on the dark ground, a step of
+       1.43:1 from rest with the text on it rising from 9.53 to 13.67. The old
+       hover dropped opacity to 0.9, a step of 1.21:1 that faded the button
+       toward the ground instead of lifting it, and read as nothing. */
+    --c-accent-hover: #ffd27a;
+    --c-status: #10b981;
+
+    /* The resting fill of every secondary control. --c-surface cannot do this
+       job: its 4.7-point step is right for a panel, but a control's edge is
+       held to 3:1 and the surface sits only 1.09:1 from the ground, which is
+       why the theme toggle read as a word rather than a button. This is the
+       smallest grey that clears 3:1 against both the ground (3.50) and the
+       surface (3.20) while keeping ink text on it at 5.05:1. */
+    --c-control: #5f6978;
+
+    /* The inverted field for the one section that flips the whole ground.
+       #EFEFEE sits at hue 60 with 3% saturation. A warmer bone at #F2EFE9 was
+       measured at hue 40 and 25.7% and dropped, because a light saturated
+       cream ground beside an amber accent is the banned assistant palette. */
+    --c-field: #efefee;
+    --c-field-ink: #16181c;
+    --c-field-muted: #55606e;
+    --c-field-accent: #9a5b00;
+
+    color-scheme: dark;
+
+    /* Motion tokens, taken from taste-skill's motion reference. Ease-out for
+       anything arriving, ease-in-out for the picture shutter, which travels
+       while it is visible, and a softer curve for the long image settle. */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+
+    /* The sticky header's height, measured at 76.5px at every width. The hero
+       photo's height is solved against it. */
+    --header-h: 4.8rem;
+  }
+
+  /* The first screen on a wide display. The photo's height is whatever is
+     left of the screen after the header, the top padding, the two headline
+     lines (1.9 times the display size, at 0.95 leading), the gap, the
+     two-line caption and a little air below it. Measured before this rule on
+     a 1920x1080 screen at 125% scaling, the caption ended 158px below the
+     first screen; only the two tallest of six common screen sizes fitted.
+     The 13rem floor keeps the photo a picture rather than a strip on very
+     short screens, and the 5:4 aspect ratio on the image is the ceiling, so a
+     tall screen still gets the uncropped frame. Nothing here has a fixed
+     height, so a short screen can push content down but never make it spill
+     into the next section. */
+  .hero {
+    --hero-pad: 2.5rem;
+    --hero-gap: 2.5rem;
+    --hero-photo-max: max(
+      13rem,
+      calc(
+        100svh - var(--header-h) - var(--hero-pad) - 1.9 * var(--step-display) -
+          var(--hero-gap) - 0.75rem - 3 * var(--step-small) - 1.25rem
+      )
+    );
+  }
+
+  /* A 1366x768 laptop leaves about 657px. Tighter spacing there buys the
+     photo the height the padding would otherwise take. */
+  @media (max-height: 700px) {
+    .hero {
+      --hero-pad: 1.5rem;
+      --hero-gap: 1.75rem;
+    }
+  }
+
+  html.light {
+    --c-bg: #f7f7f5;
+    --c-surface: #ffffff;
+    --c-ink: #16181c;
+    --c-muted: #5a626e;
+    --c-accent: #9a5b00;
+    --c-accent-ink: #ffffff;
+    /* Deeper on the light ground: 1.77:1 from rest, text on it 5.43 to 9.59. */
+    --c-accent-hover: #663b00;
+    --c-status: #047857;
+    /* 3.30 against the ground, 3.54 against the surface, ink text 5.01. */
+    --c-control: #82898f;
+
+    /* The field inverts with the theme, so the surprise section is always the
+       opposite of the page around it. */
+    --c-field: #14181f;
+    --c-field-ink: #f3f4f6;
+    --c-field-muted: #9ca3af;
+    --c-field-accent: #f5a524;
+
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-ink);
+    font-family: var(--face-text);
+    font-size: var(--step-body);
+    line-height: 1.5;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Tracking is set per step, not once for every heading: a value right for
+     120px chokes 32px. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--face-display);
+    font-weight: 500;
+    hyphens: none;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--step-display);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    /* Round and diagonal left edges read as indented at display size. */
+    margin-left: -0.04em;
+  }
+
+  h2 {
+    font-size: var(--step-head);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* What the monospace face was really being used for. */
+  .nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 0.07em;
+  }
+
+  ::selection {
+    background-color: var(--c-accent);
+    color: var(--c-accent-ink);
+  }
+
+  /* Never removed, only replaced. The accent clears 3:1 on every ground the
+     page uses, measured. */
+  :focus-visible {
+    outline: 3px solid var(--c-accent);
+    outline-offset: 3px;
+  }
+
+  img,
+  iframe {
+    max-width: 100%;
+  }
+
+  /* Tailwind v4's preflight no longer gives buttons a pointer, as v3 did, so
+     every <button> fell back to the browser's arrow while every link showed a
+     hand. Measured before this rule: cursor "default" on the theme toggle, the
+     filters and the copy button. Disabled buttons keep the arrow. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-ink: var(--c-ink);
+  --color-muted: var(--c-muted);
+  --color-accent: var(--c-accent);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-status: var(--c-status);
+  --color-field: var(--c-field);
+  --color-field-ink: var(--c-field-ink);
+  --color-field-muted: var(--c-field-muted);
+  --color-field-accent: var(--c-field-accent);
+
+  --font-display: var(--face-display);
+  --font-body: var(--face-text);
+
+  --text-small: var(--step-small);
+  --text-body: var(--step-body);
+  --text-lead: var(--step-lead);
+  --text-head: var(--step-head);
+  --text-display: var(--step-display);
+}
+
+/* The theme switch is a reveal, not a cross fade.
+
+   Why: the two themes are inversions of each other, so any blend between them
+   drives the text and its background through mid grey at the same instant and
+   the contrast between them collapses. Measured on this palette at the halfway
+   point: the navbar buttons bottom out at 1.06:1, the nav links at 1.00:1
+   (identical colours), the primary button at 1.14:1, against the 4.5:1 that
+   normal text requires. For those few frames the text is not dim, it is gone.
+   A reveal never blends: every pixel is either fully the old theme or fully the
+   new one, so the contrast never leaves its measured value.
+
+   The first two rules remove the user agent's own cross fade. `animation: none`
+   stops the fade and `mix-blend-mode: normal` removes the `plus-lighter`
+   blending that goes with it; without both, that fade would still run
+   underneath the reveal. The new snapshot already paints above the old one, so
+   clipping it is what does the revealing.
+
+   The circle is centred on the toggle and sized in JavaScript to reach the
+   furthest corner of the viewport. The fallbacks here cover the case where that
+   script did not run. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: theme-reveal 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--switch-x, 50%) var(--switch-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--switch-r, 150vmax) at var(--switch-x, 50%) var(--switch-y, 50%));
+  }
+}
+
+/* ==========================================================================
+   Motion. Added 2026-10-16 at Ibrahim's request, reversing the earlier
+   choice to keep the page still. Every rule that hides anything sits inside
+   one media query, screen with no reduced-motion preference, so print,
+   reduced motion and a failed script all get the finished page.
+
+   Three manners, chosen by what is arriving rather than one preset stamped
+   on every block, which taste-skill names as the commonest motion tell:
+   - lines of large type rise from behind their own baseline. The headline does
+     it on load and is the signature: lines appear in order, written first,
+     which is what the page is about. Section headings echo it, smaller.
+   - pictures open like a shutter from the top edge while settling from a
+     slight scale, so a found photograph arrives as a frame, not a card.
+   - text and list rows rise a short way and fade in, row by row.
+   Transform, opacity and clip-path only, so nothing forces layout.
+   ========================================================================== */
+
+.frame {
+  overflow: hidden;
+}
+
+/* The mask each line rises out of. The 0.15em of padding, cancelled by an
+   equal negative margin, is room for ascenders and descenders: at 0.95
+   leading the glyphs overhang their line box, and a mask the size of the box
+   would trim the tops of b, f, k and t. The same is needed sideways, because
+   overflow clips both axes: the bowl of the b that opens "before" overhangs
+   the left edge, and a pixel comparison with and without the mask found 4 to
+   5 trimmed pixels there at three widths. Inline margins never collapse, so
+   0.1em each side changes nothing about the layout. */
+.lines .line {
+  display: block;
+  overflow: hidden;
+  padding: 0.15em 0.1em;
+  margin: -0.15em -0.1em;
+}
+
+/* Between two lines the margins are adjacent and collapse to the larger of
+   the two, -0.15em, instead of adding to -0.3em, which opened the headline's
+   leading by 0.15em (measured: the hero sat 17px lower than the arithmetic
+   said). Asking for the full -0.3em here makes the collapsed value right. */
+.lines .line + .line {
+  margin-top: -0.3em;
+}
+
+.lines [data-line] {
+  display: block;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* The hero plays on load, from CSS alone. html.js is set by the inline
+     script in <head>, and `both` holds the start state through each delay,
+     so nothing flashes in before its turn. 150% clears the mask's padding as
+     well as the line, so no sliver of a glyph shows before it moves. */
+  .js .hero .lines [data-line] {
+    transform: translateY(150%);
+    animation: line-up 900ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 110ms + 150ms);
+  }
+
+  .js .hero [data-rise] {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: rise 800ms var(--ease-out) both;
+    animation-delay: var(--delay, 420ms);
+  }
+
+  .js .hero-shot .frame {
+    animation: shutter 1100ms var(--ease-in-out) both;
+    animation-delay: 480ms;
+  }
+
+  .js .hero-shot .frame img {
+    animation: settle 1500ms var(--ease-soft) both;
+    animation-delay: 480ms;
+  }
+
+  /* Everything below the hero arrives once, as it reaches the reading area.
+     main.js sets html.reveal only after its observer exists, so if the script
+     never runs, nothing below the hero is ever hidden. --d is the stagger
+     main.js gives parts that arrive together. */
+  .reveal [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .reveal [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 700ms var(--ease-out) var(--d, 0ms),
+      transform 900ms var(--ease-out) var(--d, 0ms);
+  }
+
+  /* Headings and pictures stay put themselves; what moves is inside them. */
+  .reveal [data-reveal="line"],
+  .reveal [data-reveal="picture"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal [data-reveal="line"] [data-line] {
+    transform: translateY(150%);
+  }
+
+  .reveal [data-reveal="line"].is-in [data-line] {
+    transform: none;
+    transition: transform 900ms var(--ease-out) var(--d, 0ms);
+  }
+
+  .reveal [data-reveal="picture"] .frame {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .reveal [data-reveal="picture"] .frame img {
+    transform: scale(1.12);
+  }
+
+  .reveal [data-reveal="picture"].is-in .frame {
+    clip-path: inset(0);
+    transition: clip-path 1100ms var(--ease-in-out) var(--d, 0ms);
+  }
+
+  .reveal [data-reveal="picture"].is-in .frame img {
+    transform: none;
+    transition: transform 1500ms var(--ease-soft) var(--d, 0ms);
+  }
+}
+
+@keyframes line-up {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shutter {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@layer components {
+  /* Minimum 44x44 touch area on every control, applied through padding so the
+     visual size stays free to be smaller than the hit box. */
+  .tap {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Secondary controls: the theme toggle, the menu button, the work filters
+     and the previous-line button. They rest on --c-control so the edge of the
+     button is visible, and on hover or press they take the muted fill with
+     ground-coloured text, a step of 2.19:1 in dark and 1.74:1 in light with the
+     text inverting as well, so the answer to "is this a button" is the button
+     itself changing under the pointer.
+
+     Hover is limited to devices that can hover, the way Tailwind's own hover
+     variant is, so a tap on a phone does not leave a filter stuck in its hover
+     colour. :active is not limited, so the tap itself still registers. */
+  .btn {
+    background-color: var(--c-control);
+    color: var(--c-ink);
+  }
+
+  @media (hover: hover) {
+    .btn:not(:disabled):hover {
+      background-color: var(--c-muted);
+      color: var(--c-bg);
+    }
+  }
+
+  .btn:not(:disabled):active {
+    background-color: var(--c-muted);
+    color: var(--c-bg);
+  }
+
+  /* A pressed toggle is ink. The accent used to mark it, but against the grey
+     resting fill an accent state differs from the unselected buttons mostly by
+     hue, measured at 1.53:1 in light and 2.57:1 in dark, which leaves anyone
+     who cannot rely on hue unable to tell which filter is on. Ink differs by
+     luminance alone, 5.01:1 and 5.05:1, and the accent goes back to marking
+     actions only. Written after the hover rules at equal specificity so that
+     hovering the selected filter keeps it looking selected. */
+  .btn[aria-pressed="true"],
+  .btn[aria-pressed="true"]:hover,
+  .btn[aria-pressed="true"]:active {
+    background-color: var(--c-ink);
+    color: var(--c-bg);
+  }
+
+  /* Primary actions: "See the work", "Copy the address", "Next line". The
+     accent is reserved for these, so the colour itself says "this does
+     something", and the pointer lifts it rather than fading it. */
+  .btn-primary {
+    background-color: var(--c-accent);
+    color: var(--c-accent-ink);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:not(:disabled):hover {
+      background-color: var(--c-accent-hover);
+    }
+  }
+
+  .btn-primary:not(:disabled):active {
+    background-color: var(--c-accent-hover);
+  }
+
+  /* Press feedback: the button gives a little under the finger. Transform
+     only. The colour changes on hover and press stay instant on purpose: a
+     colour transition here would still be running inside the theme reveal
+     and fade a button's text through its own background, the same collapse
+     the reveal exists to avoid. */
+  .btn,
+  .btn-primary {
+    transition: transform 140ms var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn:not(:disabled):active,
+    .btn-primary:not(:disabled):active {
+      transform: scale(0.97);
+    }
+  }
+
+  /* Navigation. Links rest in muted and rise to ink under the pointer. The
+     link for the chapter on screen carries aria-current, which main.js sets,
+     and the look is drawn from that attribute, so what a screen reader
+     announces and what the eye sees cannot disagree. The underline separates
+     "here" from "hovered" without relying on colour, and it is ink rather than
+     the accent because the accent is kept for actions. */
+  .nav-link {
+    color: var(--c-muted);
+  }
+
+  @media (hover: hover) {
+    .nav-link:hover {
+      color: var(--c-ink);
+    }
+  }
+
+  .nav-link[aria-current="true"] {
+    color: var(--c-ink);
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.45em;
+  }
+}
