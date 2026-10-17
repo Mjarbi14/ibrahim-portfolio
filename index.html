@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ibrahim Al Hanif, video editor who writes the cut first</title>
+<meta name="description" content="Ibrahim Al Hanif writes a piece as lines before he opens Premiere, then cuts the footage until it matches. Adobe production since 2018, from Garut, Indonesia, on GMT+7.">
+<link rel="canonical" href="https://example.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ibrahim Al Hanif, video editor who writes the cut first">
+<meta property="og:description" content="I write the piece as lines before I open Premiere, then cut the footage until it matches what I wrote.">
+<meta property="og:image" content="https://example.com/assets/garut-westjava-indonesia-daytime.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..600&family=Newsreader:opsz,wght@6..72,400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+<script>
+  // Lets the stylesheet hold the hero's entrance until it can play. Without
+  // this class nothing is ever hidden, so with scripts off the page reads in full.
+  document.documentElement.classList.add("js");
+
+  // Applied before paint so the chosen theme never flashes the wrong one.
+  try {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light" || (!saved && window.matchMedia("(prefers-color-scheme: light)").matches)) {
+      document.documentElement.classList.add("light");
+    }
+  } catch (e) { /* private mode blocks storage; dark stays the default */ }
+</script>
+</head>
+
+<body class="font-body">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-accent focus:px-4 focus:py-3 focus:font-medium focus:text-accent-ink">Skip to content</a>
+
+<!-- ============ NAV ============
+     A plain bar: wordmark, a few links, one action. No blur, no pill, no
+     chrome, no line underneath. -->
+<header class="sticky top-0 z-40 bg-bg">
+  <nav class="mx-auto flex max-w-6xl items-center gap-3 px-5 py-4 sm:px-8" aria-label="Main">
+    <!-- text-lead, not Tailwind's text-lg: text-lg is 18px, which is not one of
+         the five scale steps, and the inspector counted it as a sixth size for
+         the sake of this one element. -->
+    <a href="#main" class="font-display text-lead font-medium tracking-tight">Ibrahim Al Hanif</a>
+
+    <ul class="ml-auto hidden items-center gap-2 md:flex">
+      <li><a href="#written" class="nav-link tap inline-flex items-center px-3 py-2">Written first</a></li>
+      <li><a href="#work" class="nav-link tap inline-flex items-center px-3 py-2">Work</a></li>
+      <li><a href="#about" class="nav-link tap inline-flex items-center px-3 py-2">About</a></li>
+      <li><a href="#contact" class="nav-link tap inline-flex items-center px-3 py-2">Contact</a></li>
+    </ul>
+
+    <!-- No aria-pressed. The visible label changes with the theme, and the
+         ARIA button pattern is explicit that a toggle whose label changes must
+         not also announce a pressed state: a screen reader would otherwise read
+         "Switch to the dark theme, pressed", which contradicts itself. The
+         action label alone carries it. -->
+    <button id="theme-toggle" type="button" class="btn tap ml-auto inline-flex items-center justify-center px-4 py-2 md:ml-4">
+      <span id="theme-label">Light</span>
+    </button>
+
+    <button id="menu-toggle" type="button" class="btn tap inline-flex items-center justify-center px-4 py-2 md:hidden" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden bg-surface md:hidden">
+    <ul class="mx-auto flex max-w-6xl flex-col px-5 py-2 sm:px-8">
+      <li><a href="#written" class="nav-link tap flex items-center py-3">Written first</a></li>
+      <li><a href="#work" class="nav-link tap flex items-center py-3">Work</a></li>
+      <li><a href="#about" class="nav-link tap flex items-center py-3">About</a></li>
+      <li><a href="#contact" class="nav-link tap flex items-center py-3">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============
+     The headline takes the full container width, which is what lets it stay at
+     120px and still break into two lines: in a half-width column the same
+     sentence needed 67px and broke into four. The supporting line, the status
+     and the action sit in a row underneath, beside the one large picture.
+     The picture is Garut, where he actually works, which is the one thing in
+     this section no competitor can borrow. It is credited in place, because it
+     is an archive photograph of his town and not his own footage. -->
+<section class="hero mx-auto max-w-6xl px-5 pt-10 pb-16 sm:px-8 md:pt-14 md:pb-24 lg:pt-[var(--hero-pad)]">
+  <!-- The signature move: each line rises from behind its own baseline, in
+       order, the way the page says the work happens, written first. The space
+       between the two spans keeps the accessible text reading "cut before"
+       rather than "cutbefore". -->
+  <h1 class="lines"><span class="line"><span data-line style="--i:0">I write the cut</span></span> <span class="line"><span data-line style="--i:1">before I make it.</span></span></h1>
+
+  <div class="mt-12 grid gap-10 lg:mt-[var(--hero-gap)] lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-14">
+    <div data-rise style="--delay:420ms">
+      <p class="max-w-[34ch] text-lead text-ink">
+        Ibrahim Al Hanif edits video and motion graphics from Garut, Indonesia, in Adobe since 2018.
+      </p>
+
+      <!-- items-start, not items-center: centred across a wrapped two-line
+           sentence the marker floats between the lines and reads as detached.
+           The small top offset sits it on the first line instead, and the
+           block's left edge still matches the headline. -->
+      <p class="mt-6 flex items-start gap-3 text-ink">
+        <span class="mt-[0.45em] h-3 w-3 shrink-0 bg-status" aria-hidden="true"></span>
+        <span>Open to fully remote contract work, high weekly hours, GMT+7</span>
+      </p>
+
+      <a href="#work" class="btn-primary tap mt-8 inline-flex items-center justify-center px-7 py-4 font-display text-lead font-medium">See the work</a>
+    </div>
+
+    <!-- On a wide screen the photo's height is solved from the screen's height
+         (--hero-photo-max in input.css), so the photo and its caption both end
+         inside the first screen. With room to spare it stays 5:4; on a short
+         screen it is cropped wider, toward a cinema frame, and object-position
+         keeps the volcano's peak inside the crop. -->
+    <figure class="hero-shot m-0">
+      <div class="frame">
+        <img src="assets/garut-westjava-indonesia-daytime.jpg" width="1920" height="1440" decoding="async"
+             alt="A river running between rice terraces below a volcano in Garut, West Java."
+             class="aspect-[5/4] w-full object-cover object-[50%_15%] lg:max-h-[var(--hero-photo-max)]">
+      </div>
+      <figcaption class="mt-3 text-small text-muted" data-rise style="--delay:820ms">
+        Garut, West Java, where I work. Archive photograph by Achmad Rabin Taim, CC BY 2.0, via Wikimedia Commons. Not my own footage.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ WRITTEN FIRST ============
+     The idea of the page, and the one thing a visitor can operate. Composition
+     is deliberately type only, sitting between two picture-heavy sections.
+
+     Progressive enhancement: the pairs live in this markup as a plain list, so
+     the section is complete with no JavaScript. main.js turns that list into a
+     stepper. Right now there are no pairs, because the lines belong to Ibrahim
+     and inventing them is not an option. -->
+<section id="written" class="bg-surface">
+  <div class="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-20">
+    <!-- Heading left, prose right. A single 62ch measure in a 1152px container
+         left half the width empty, which reads as an underbuilt section rather
+         than a rest. This also gives the section a composition its neighbours
+         do not share. -->
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+      <h2 class="lines" data-reveal="line"><span class="line"><span data-line>Written first</span></span></h2>
+
+      <div id="script-pairs">
+        <p class="max-w-[62ch] text-ink" data-reveal>
+          Before I open Premiere I write the piece as lines: what happens, in what order, at what
+          speed. Then I cut the footage until it matches what I wrote. It is the reverse of how most
+          edits are made, and it is why the rhythm survives the edit instead of being found in it.
+        </p>
+        <ol class="mt-8 space-y-10" data-reveal>
+          <li data-pair>
+            <p class="font-display text-lead font-medium">&ldquo;Di antara tawa dan langkah yang tergesa, kita menyimpan pertanyaan tentang hari esok.&rdquo;</p>
+            <p class="mt-3 text-ink">From students laughing in class to hurried hallway footsteps, the edit cuts sharply to an over-the-shoulder frame locked on the poster.</p>
+          </li>
+          <li data-pair>
+            <p class="font-display text-lead font-medium">&ldquo;Di luar sana dunia bergerak. Ada kesempatan di setiap pintu, menunggu untuk diketuk.&rdquo;</p>
+            <p class="mt-3 text-ink">A high-tempo street timelapse cuts into a rhythmic montage of alternating doors being knocked on, matching the voiceover cadence.</p>
+          </li>
+          <li data-pair>
+            <p class="font-display text-lead font-medium">&ldquo;Ada yang menemukan tempatnya di dunia kerja. Ada juga yang masih mencari arah. Itu proses.&rdquo;</p>
+            <p class="mt-3 text-ink">The cutting pace drops: a tight frame of fingers typing on a keyboard, then a quiet pause as the subject leans back and looks up, letting the rhythm breathe.</p>
+          </li>
+          <li data-pair>
+            <p class="font-display text-lead font-medium">&ldquo;Karena setelah SMA tidak ada peta pasti. Yang ada adalah keputusan. Dan keberanian untuk berubah.&rdquo;</p>
+            <p class="mt-3 text-ink">An orbital camera move circling the subject in an open field, flashing rapid flashback cuts before snapping straight to the closing title.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============
+     The grid varies by cell size because the pieces genuinely come in two
+     shapes. No found picture appears in this section: everything here is read
+     as Ibrahim's own work, so an archive photograph would be dishonest even
+     with a caption. Case studies are inline rather than behind a dialog, so
+     the section carries its full content. -->
+<section id="work" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
+  <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <div>
+      <h2 class="lines" data-reveal="line"><span class="line"><span data-line>Selected work</span></span></h2>
+      <p class="mt-4 max-w-[48ch] text-ink" data-reveal>Six pieces. Widescreen for the films, event teaser and montages, vertical for the social edits.</p>
+    </div>
+    <div class="flex flex-wrap gap-3" role="group" aria-label="Filter work by type" data-reveal>
+      <button type="button" class="work-filter btn tap px-5 py-3 font-medium" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="work-filter btn tap px-5 py-3 font-medium" data-filter="narrative" aria-pressed="false">Narrative</button>
+      <button type="button" class="work-filter btn tap px-5 py-3 font-medium" data-filter="promotional" aria-pressed="false">Promotional</button>
+      <button type="button" class="work-filter btn tap px-5 py-3 font-medium" data-filter="shortform" aria-pressed="false">Short form</button>
+    </div>
+  </div>
+
+  <div id="work-grid" class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+
+  <p id="work-empty" class="mt-12 hidden bg-surface p-8 text-ink" data-reveal>
+    No piece is filed under that type yet. Choose <span class="font-medium">All</span> to see everything.
+  </p>
+</section>
+
+<!-- ============ MATERIAL BAND ============
+     A single wide picture between two text sections, carrying the material the
+     whole page is about. It is also where the accent colour comes from: this is
+     the colour of film negative. CC0, so no credit is required; credited
+     anyway. -->
+<section class="bg-surface" aria-label="Film negative">
+  <figure class="m-0" data-reveal="picture">
+    <div class="frame">
+      <img src="assets/negative-35mm-film-strip.webp" width="1024" height="683" loading="lazy" decoding="async"
+           alt="A curved strip of amber 35mm negative standing on a pale surface."
+           class="h-[40vh] w-full object-cover md:h-[52vh]">
+    </div>
+    <figcaption class="mx-auto max-w-6xl px-5 py-5 text-small text-muted sm:px-8" data-reveal>
+      35mm negative. The amber on this page is this colour, not a brand colour. Photograph by Markus Spiske, CC0, via rawpixel.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ============ CAPABILITIES ============
+     One full width panel for the evidenced strength, then a pair for the two
+     that support it. The unequal treatment is the point. -->
+<section id="capabilities" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
+  <h2 class="lines" data-reveal="line"><span class="line"><span data-line>What I actually do</span></span></h2>
+
+  <div class="mt-12 grid gap-8 bg-surface p-8 md:grid-cols-[1fr_320px] md:items-center md:gap-12 md:p-12">
+    <div data-reveal>
+      <h3 class="font-display text-head font-medium">Multimedia production</h3>
+      <p class="mt-5 max-w-[56ch] text-ink">
+        Video editing, motion graphics, graphic design, photo retouching, event documentation and
+        short form social video. This is the work I have been doing since 2018, and it is where my
+        portfolio sits. I review a cut frame by frame before anyone else sees it.
+      </p>
+    </div>
+    <figure class="m-0" data-reveal="picture">
+      <div class="frame">
+        <img src="assets/making-cuts-project-365-day-297.jpg" width="1023" height="622" loading="lazy" decoding="async"
+             alt="A film splicer with a strip of film threaded through it, beside a bottle of film cement."
+             class="w-full object-cover">
+      </div>
+      <figcaption class="mt-3 text-small text-muted" data-reveal>
+        A splicer, where a cut used to be made by hand. Photograph by Keith Williamson, CC BY 2.0, via Flickr.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="mt-8 grid gap-8 md:grid-cols-2 md:gap-12">
+    <div>
+      <h3 class="font-display text-head font-medium" data-reveal>Writing and analysis</h3>
+      <p class="mt-5 text-ink" data-reveal>
+        Scriptwriting, analytical English prose and academic research writing. My final school research
+        paper argued about boom and crash behaviour in cryptocurrency markets from an Islamic
+        perspective, and my supervising teacher accepted it. IELTS 6.5, taken in 2025.
+      </p>
+      <figure class="m-0 mt-6" data-reveal="picture">
+        <div class="frame">
+          <img src="assets/typescript-of-tamas-pinter-s-short-story.jpg" width="1634" height="2316" loading="lazy" decoding="async"
+               alt="A typed manuscript page covered in handwritten corrections and crossings out."
+               class="w-full object-cover">
+        </div>
+        <figcaption class="mt-3 text-small text-muted" data-reveal>
+          Not my manuscript. A typescript by Tamás Pintér with his own corrections on it, from the
+          archive, shown because this is the stage I mean: the piece exists in writing, and gets
+          revised, before anything is cut. Photograph by Családi gyűjtemény, CC BY-SA 4.0, via
+          Wikimedia Commons.
+        </figcaption>
+      </figure>
+    </div>
+    <div>
+      <h3 class="font-display text-head font-medium" data-reveal>Review and remote delivery</h3>
+      <p class="mt-5 text-ink" data-reveal>
+        Frame by frame visual review, close adherence to written guidelines, and checking other
+        people's work before it is published, which was my job as chairperson of Rijaalul Ghad
+        Mu'allimin. I work asynchronously from GMT+7.
+      </p>
+      <p class="mt-5 text-ink" data-reveal>
+        I also write Python, JavaScript, HTML and CSS. This site is the first thing I have built with
+        them, with source code open on
+        <a href="https://github.com/Mjarbi14" class="underline hover:text-accent" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============
+     The one section that takes the whole page to the inverted field. A section
+     that changes its entire ground is the strongest separation available and it
+     replaces dividers, cards and background decoration at once. It is also the
+     one place the page becomes a printed page, which is the idea. -->
+<section id="about" class="bg-field text-field-ink">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 md:py-28 lg:grid-cols-[240px_1fr] lg:gap-16">
+    <figure class="m-0 w-36 self-start sm:w-44 lg:w-full" data-reveal="picture">
+      <div class="frame">
+        <img src="assets/img/ibrahim.jpg" width="400" height="600" loading="lazy" decoding="async"
+             alt="Ibrahim Al Hanif, in a dark suit against a white background."
+             class="w-full object-cover">
+      </div>
+    </figure>
+    <div>
+      <h2 class="lines text-field-ink" data-reveal="line"><span class="line"><span data-line>About</span></span></h2>
+      <p class="mt-8 max-w-[62ch]" data-reveal>
+        I started in Adobe tools in 2018, as the student in a school organisation who got handed the
+        footage. Over several years that became the whole chain: writing the script, shooting the
+        documentation, cutting it and reviewing it before publication.
+      </p>
+      <p class="mt-5 max-w-[62ch]" data-reveal>
+        Writing came with it rather than after it. I read and write analytical English, and I am
+        teaching myself programming and artificial intelligence. That is why I am comfortable with a
+        written brief or a style guide: following a specification closely is the same discipline as
+        cutting to a script.
+      </p>
+      <p class="mt-5 max-w-[62ch]" data-reveal>
+        I am in Garut, West Java, and available for high weekly hours.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============
+     Two columns of plain lists. No rules, no left border, no cards: the
+     headings and the space do the separating. -->
+<section id="experience" class="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
+  <h2 class="lines" data-reveal="line"><span class="line"><span data-line>Experience and education</span></span></h2>
+
+  <div class="mt-12 grid gap-14 lg:grid-cols-[1fr_1fr_280px] lg:gap-12">
+    <div>
+      <h3 class="font-display text-head font-medium" data-reveal>Organisations</h3>
+      <ol class="mt-6 space-y-8">
+        <li data-reveal>
+          <p class="font-medium text-ink">Publication and Documentation Staff</p>
+          <p class="text-small text-muted">Kolega 76, event organising team</p>
+          <p class="mt-2 text-ink">Produced photo and video documentation and promotional media to a brief and a fixed deadline. Wrote the script for the teaser video, then edited the footage myself.</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">Chairperson</p>
+          <p class="text-small text-muted">Rijaalul Ghad Mu'allimin, senior secondary level</p>
+          <p class="mt-2 text-ink">Led the student team, divided responsibilities, tracked progress and reviewed all output before publication.</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">Chairperson, second term</p>
+          <p class="text-small text-muted">Rijaalul Ghad Tsanawiyyah, junior secondary level</p>
+          <p class="mt-2 text-ink">Elected to lead the organisation after a first term in its creative division.</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">Creative Division Staff, first term</p>
+          <p class="text-small text-muted">Rijaalul Ghad Tsanawiyyah, junior secondary level</p>
+          <p class="mt-2 text-ink">Produced graphic design and video material to internal quality standards on a recurring deadline.</p>
+        </li>
+      </ol>
+      <p class="mt-6 text-small text-muted" data-reveal>These were student organisation roles, not paid employment.</p>
+    </div>
+
+    <div>
+      <h3 class="font-display text-head font-medium" data-reveal>Education</h3>
+      <ol class="mt-6 space-y-8">
+        <li data-reveal>
+          <p class="font-medium text-ink">Independent study</p>
+          <p class="nums text-small text-muted">2026 to present</p>
+          <p class="mt-2 text-ink">Studying programming and artificial intelligence on my own, while available full time for remote contract work.</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">Informatics, Universitas Padjadjaran</p>
+          <p class="nums text-small text-muted">2025</p>
+          <p class="mt-2 text-ink">Admitted through the SNBT national selection route and enrolled with active student status, then withdrew.</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">MA Persis Tarogong, science stream</p>
+          <p class="nums text-small text-muted">Graduated May 2025</p>
+          <p class="mt-2 text-ink">Wrote a research paper on boom and crash behaviour in cryptocurrency markets from an Islamic perspective, accepted by my supervising teacher.</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">Third place, International Robotic Games</p>
+          <p class="nums text-small text-muted">PKP 2016, maze solving, junior category</p>
+        </li>
+        <li data-reveal>
+          <p class="font-medium text-ink">7th National Honorable Mention, OPTIKA Mathematics Olympiad</p>
+          <p class="nums text-small text-muted">Juara Harapan 7 Nasional, OPTIKA 23, 2023</p>
+        </li>
+      </ol>
+    </div>
+
+    <figure class="m-0" data-reveal="picture">
+      <div class="frame">
+        <img src="assets/philips-dp70-projector-mechanism-with-35mm-film.jpg" width="1000" height="1504" loading="lazy" decoding="async"
+             alt="The mechanism of a Philips DP70 projector, cream painted metal with black control knobs, with film threaded through it."
+             class="w-full object-cover">
+      </div>
+      <figcaption class="mt-3 text-small text-muted" data-reveal>
+        The machine at the other end of the chain. Photograph by Leo Enticknap, CC BY-SA 3.0, via Wikimedia Commons. Not my equipment.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============
+     One dominant action rather than three equal cards. -->
+<section id="contact" class="bg-surface">
+  <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 md:py-28">
+    <h2 class="lines" data-reveal="line"><span class="line"><span data-line>Get in touch</span></span></h2>
+    <p class="mt-6 max-w-[48ch] text-ink" data-reveal>Email is fastest. I reply in English or Indonesian.</p>
+
+    <p class="mt-10 font-display text-head font-medium break-all" data-reveal>ibrahimalhanif24@gmail.com</p>
+
+    <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center" data-reveal>
+      <button id="copy-email" type="button" class="btn-primary tap inline-flex items-center justify-center px-7 py-4 font-display text-lead font-medium">Copy the address</button>
+      <a href="mailto:ibrahimalhanif24@gmail.com?subject=Editing%20work" class="tap inline-flex items-center justify-center px-2 py-3 text-ink underline hover:text-accent">Open it in your mail app</a>
+    </div>
+    <p id="copy-status" class="mt-4 text-ink" role="status" aria-live="polite"></p>
+
+    <p class="mt-12 text-ink" data-reveal>
+      Also on
+      <a href="https://github.com/Mjarbi14" class="underline hover:text-accent" target="_blank" rel="noopener noreferrer">GitHub</a>,
+      <a href="https://wa.me/6282119055655" class="underline hover:text-accent" target="_blank" rel="noopener noreferrer">WhatsApp</a>,
+      and
+      <a href="https://www.linkedin.com/in/ibrahim-alhanif" class="underline hover:text-accent" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- The name returns at full width, which is how most strong pages close. -->
+<footer class="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+  <p class="lines font-display text-display font-medium leading-none tracking-tight" data-reveal="line"><span class="line"><span data-line>Ibrahim Al Hanif</span></span></p>
+  <p class="mt-8 text-ink" data-reveal>Garut, West Java, Indonesia. GMT+7.</p>
+
+  <h2 class="mt-16 font-display text-lead font-medium">Picture credits</h2>
+  <ul class="mt-4 space-y-2 text-small text-muted">
+    <li>Garut, West Java: "Garut-westjava-indonesia-daytime" by Achmad Rabin Taim, CC BY 2.0, via Wikimedia Commons.</li>
+    <li>35mm negative: "Negative 35mm film strip" by Markus Spiske, CC0, via rawpixel.</li>
+    <li>Film splicer: "Making cuts Project 365 Day 297" by Keith Williamson, CC BY 2.0, via Flickr.</li>
+    <li>Typescript page: "Typescript of Tamas Pinter's short story" by Családi gyűjtemény, CC BY-SA 4.0, via Wikimedia Commons.</li>
+    <li>Projector mechanism: "Philips DP70 projector mechanism, with 35mm film threaded" by Leo Enticknap, CC BY-SA 3.0, via Wikimedia Commons.</li>
+    <li>The portrait is mine. None of the archive photographs above show my own work, equipment or clients.</li>
+  </ul>
+
+  <p class="nums mt-10 text-small text-muted">Built by hand, <span id="year">2026</span>.</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
