@@ -32,7 +32,7 @@ Session of 2026-10-14 to 2026-10-16. Only what was agreed or built in that sessi
 - Desktop grid forms a balanced 3x3 layout with zero empty cells across all 3 rows.
 - GitHub profile and repository links wired into `#contact` and `#capabilities` sections.
 - Canonical URL and OpenGraph metadata updated to `https://mjarbi.my.id/`.
-- GitHub Actions automated deployment workflow created at `.github/workflows/deploy.yml`.
+- Deployed and live via Cloudflare Pages on custom domain `https://mjarbi.my.id/`.
 
 ## Not done (placeholders, line numbers as of 2026-10-17)
 - `assets/js/main.js:37, 53, 69, 85`: `thumb: null`. Optional local asset override (defaults cleanly to official YouTube thumbnail).
@@ -47,4 +47,4 @@ Session of 2026-10-14 to 2026-10-16. Only what was agreed or built in that sessi
 - The test harness and Chrome live in `/tmp` and are lost every session. The install recipe is in `DELIVERY-GATE.md`.
 
 ## Next task
-Review the site and transitions by eye, update canonical/OG metadata in index.html when domain is chosen, add the public GitHub repo link, and deploy to Cloudflare Pages.
+Review the live website at https://mjarbi.my.id/ and check animations, transitions, and video embeds by eye.
