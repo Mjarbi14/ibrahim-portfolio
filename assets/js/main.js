@@ -122,6 +122,39 @@ const PROJECTS = [
       "Synchronising fast gameplay cuts with music transients and sound effects without losing visual clarity or disorienting the viewer.",
     did:
       "I keyframed speed ramps for fluid velocity, designed custom sound effects to amplify in-game impacts, and color-matched clips for visual punch."
+  },
+  {
+    id: "two-different-worlds",
+    type: "shortform",
+    wide: true,
+    title: "Two Different World Edits",
+    role: "Editor and colorist",
+    tools: "Premiere Pro, After Effects",
+    ratio: "16:9",
+    youtubeId: "t6viZVXaJdk",
+    thumb: null,
+    summary:
+      "A conceptual edit exploring contrasting visual atmospheres, pacing, and color tones between two different worlds.",
+    problem:
+      "Balancing two sharply distinct aesthetic styles while maintaining continuous rhythm and smooth narrative transition.",
+    did:
+      "I crafted distinct pacing, sound design, and color grading for each world, uniting them through rhythmic match cuts."
+  },
+  {
+    id: "perumusan-pancasila",
+    type: "narrative",
+    title: "Perumusan Dasar Negara Pancasila",
+    role: "Post production editor",
+    tools: "Premiere Pro",
+    ratio: "16:9",
+    youtubeId: "B-JtMxsloa4",
+    thumb: null,
+    summary:
+      "A historical school narrative short recreating the formulation of Pancasila, cut for dramatised pacing and dialogue clarity.",
+    problem:
+      "Managing ensemble dialogue across indoor set acoustics while preserving historical gravitas on a student project deadline.",
+    did:
+      "I balanced multi-actor dialogue takes, layered period-appropriate audio atmosphere, and timed cuts to highlight critical character reactions."
   }
 ];
 

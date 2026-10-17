@@ -27,9 +27,9 @@ Session of 2026-10-14 to 2026-10-16. Only what was agreed or built in that sessi
 ## Done
 - Page built, then rebuilt under taste-skill, with 6 real pictures. Each archive picture is credited and marked as not his work.
 - Fixed this session: theme flicker, the 4-line headline, empty reserved video boxes, buttons that did not read as buttons (cursor and contrast), the missing section indicator, the hero cut off on his screen, and the scroll transitions.
-- All six projects in PROJECTS now have real YouTube videos and real titles (Kolega 76, Vertical short form, Geosac 2023-2024, A Token Of Appreciation, Qishatun Mumti'ah, Introducing BedulPeek). Zero placeholders remain in the work section.
+- All eight projects in PROJECTS now have real YouTube videos and real titles (Kolega 76, Vertical short form, Geosac 2023-2024, A Token Of Appreciation, Qishatun Mumti'ah, Introducing BedulPeek, Two Different World Edits, Perumusan Dasar Negara Pancasila). Zero placeholders remain in the work section.
 - Video card facades render the official video frame thumbnail behind the Play button with a 40% dark overlay.
-- Desktop grid forms a balanced 3x3 layout with zero empty cells across all 3 rows.
+- Desktop grid forms a balanced 4-row layout with zero empty cells across all rows.
 - GitHub profile and repository links wired into `#contact` and `#capabilities` sections.
 - Canonical URL and OpenGraph metadata updated to `https://mjarbi.my.id/`.
 - Deployed and live via Cloudflare Pages on custom domain `https://mjarbi.my.id/`.
