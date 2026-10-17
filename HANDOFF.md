@@ -31,7 +31,7 @@ Session of 2026-10-14 to 2026-10-16. Only what was agreed or built in that sessi
 - Video card facades render the official video frame thumbnail behind the Play button with a 40% dark overlay.
 - Desktop grid forms a balanced 3x3 layout with zero empty cells across all 3 rows.
 - GitHub profile and repository links wired into `#contact` and `#capabilities` sections.
-- Canonical URL and OpenGraph metadata updated to `https://mjarbi14.github.io/ibrahim-portfolio/`.
+- Canonical URL and OpenGraph metadata updated to `https://mjarbi.my.id/`.
 - GitHub Actions automated deployment workflow created at `.github/workflows/deploy.yml`.
 
 ## Not done (placeholders, line numbers as of 2026-10-17)
