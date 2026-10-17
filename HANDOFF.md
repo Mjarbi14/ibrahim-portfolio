@@ -33,6 +33,7 @@ Session of 2026-10-14 to 2026-10-16. Only what was agreed or built in that sessi
 - GitHub profile and repository links wired into `#contact` and `#capabilities` sections.
 - Canonical URL and OpenGraph metadata updated to `https://mjarbi.my.id/`.
 - Deployed and live via Cloudflare Pages on custom domain `https://mjarbi.my.id/`.
+- Work availability updated across Hero, Capabilities, About, and Education to encompass full-time, part-time, contract, and remote/hybrid/on-site arrangements.
 
 ## Not done (placeholders, line numbers as of 2026-10-17)
 - `assets/js/main.js:37, 53, 69, 85`: `thumb: null`. Optional local asset override (defaults cleanly to official YouTube thumbnail).
