@@ -1,6 +1,6 @@
 # Portfolio site, Ibrahim Al Hanif
 
-A single page portfolio for a multimedia producer. Built from scratch with semantic HTML,
+A single page portfolio for a junior software engineer and multimedia producer. Built from scratch with semantic HTML,
 Tailwind CSS v4, and vanilla JavaScript. No template, no site builder, no component library.
 
 Live site: https://mjarbi.my.id/
