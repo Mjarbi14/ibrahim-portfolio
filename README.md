@@ -3,7 +3,7 @@
 A single page portfolio for a multimedia producer. Built from scratch with semantic HTML,
 Tailwind CSS v4, and vanilla JavaScript. No template, no site builder, no component library.
 
-Live site: not published yet.
+Live site: https://mjarbi14.github.io/ibrahim-portfolio/
 
 ## Running it
 
@@ -14,15 +14,20 @@ npm run build     # writes assets/style.css
 
 Then open `index.html`. For live rebuilding while editing, use `npm run dev`.
 
-`assets/style.css` is generated, so it is git ignored. Cloudflare Pages rebuilds it on every push.
+## Deploying
 
-## Deploying to Cloudflare Pages
+### Option 1: GitHub Pages (Automatic via GitHub Actions)
+1. Push this repository to GitHub (`https://github.com/Mjarbi14/ibrahim-portfolio`).
+2. Go to **Settings** > **Pages** in the GitHub repository.
+3. Under **Build and deployment > Source**, select **GitHub Actions**.
+4. The workflow in `.github/workflows/deploy.yml` builds Tailwind CSS and deploys the site automatically.
 
+### Option 2: Cloudflare Pages
 1. Push this repository to GitHub.
 2. In the Cloudflare dashboard, open Workers and Pages, create a Pages project, and connect this repository.
 3. Build command: `npm run build`
 4. Build output directory: `/`
-5. After the first deploy, open Custom domains and add the domain. Cloudflare writes the DNS record itself because the domain is already in the same account.
+5. After the first deploy, open Custom domains and add your custom domain.
 
 ## Adding your own videos and titles
 

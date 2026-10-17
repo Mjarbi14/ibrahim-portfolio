@@ -30,13 +30,13 @@ Session of 2026-10-14 to 2026-10-16. Only what was agreed or built in that sessi
 - All six projects in PROJECTS now have real YouTube videos and real titles (Kolega 76, Vertical short form, Geosac 2023-2024, A Token Of Appreciation, Qishatun Mumti'ah, Introducing BedulPeek). Zero placeholders remain in the work section.
 - Video card facades render the official video frame thumbnail behind the Play button with a 40% dark overlay.
 - Desktop grid forms a balanced 3x3 layout with zero empty cells across all 3 rows.
-- GitHub profile link (https://github.com/Mjarbi14) wired into `#contact` and `#capabilities` sections.
+- GitHub profile and repository links wired into `#contact` and `#capabilities` sections.
+- Canonical URL and OpenGraph metadata updated to `https://mjarbi14.github.io/ibrahim-portfolio/`.
+- GitHub Actions automated deployment workflow created at `.github/workflows/deploy.yml`.
 
 ## Not done (placeholders, line numbers as of 2026-10-17)
 - `assets/js/main.js:37, 53, 69, 85`: `thumb: null`. Optional local asset override (defaults cleanly to official YouTube thumbnail).
-- `index.html:8` and `index.html:13`: the canonical URL and og:image still point at `example.com`.
-- Not yet deployed to Cloudflare Pages.
-- Ibrahim has not yet judged the transitions by eye after re-uploading `index.html`, `assets/style.css` and `assets/js/main.js`.
+- Ibrahim has not yet judged the transitions by eye after opening live site.
 
 ## Known bugs and limits
 - Below 768px wide, the current-section mark only shows inside the opened menu.
